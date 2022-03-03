@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.duckit.R;
 import com.duckit.app.DuckitApp;
-import com.duckit.databinding.ActivityEmployeeListBinding;
+import com.duckit.databinding.ActivityPostListBinding;
 import com.duckit.model.PostInfo;
 
 import java.util.List;
@@ -25,14 +25,14 @@ public class PostListActivity extends AppCompatActivity implements PostListContr
 
     @Inject
     PostListPresenter presenter;
-    private ActivityEmployeeListBinding binding;
+    private ActivityPostListBinding binding;
     private PostListAdapter adapter;
 
     // region Override
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_employee_list);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_post_list);
 
         getComponent().inject(this);
 
