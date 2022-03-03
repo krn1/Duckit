@@ -1,18 +1,22 @@
 package com.duckit.home;
 
+import android.content.Context;
 import android.net.Uri;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.duckit.R;
 import com.duckit.databinding.ViewPostItemInfoBinding;
 import com.duckit.model.PostInfo;
+import com.facebook.common.util.UriUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import timber.log.Timber;
 
@@ -68,9 +72,37 @@ public class PostListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         void onBind(int position) {
             PostInfo postInfo = postInfoList.get(position);
-            String imageUrl = postInfo.getImage();
-            binding.image.setImageURI(imageUrl);
+            // title
             binding.title.setText(postInfo.getHeadline());
+            // image
+            String imageUrl = postInfo.getImage();
+            if (imageUrl.equalsIgnoreCase("https://en.wikipedia.org/wiki/Duck_test#/media/File:Mallard2.jpg")) {
+                Uri uri = new Uri.Builder()
+                        .scheme(UriUtil.LOCAL_RESOURCE_SCHEME)
+                        .path(String.valueOf(R.drawable.mallard_duck))
+                        .build();
+                binding.image.setImageURI(uri);
+
+            } else {
+                binding.image.setImageURI(imageUrl);
+            }
+
+            // votes
+            AtomicBoolean upvoteStatus = new AtomicBoolean(true);
+            binding.upvote.setOnClickListener( v -> {
+//                if(upvoteStatus.get()) {
+//                    binding.upvote.setImageDrawable(ContextCompat.getDrawable(this.itemView.getContext(), R.drawable.ic_up_vote));
+//                    upvoteStatus.set(false);
+//                    Timber.e("blue");
+//                } else {
+//                    binding.upvote.setImageDrawable(ContextCompat.getDrawable(this.itemView.getContext(), R.drawable.ic_up_vote_pressed));
+//                    upvoteStatus.set(true);
+//                    Timber.e("red");
+//                }
+            }
+            );
+
+            binding.count.setText(String.valueOf(postInfo.getUpvotes()));
         }
     }
 
