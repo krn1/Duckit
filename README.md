@@ -1,5 +1,5 @@
 # Duckit App
- The app displays the alphabetically sorted employee lists from the given square backend using reccycleview. The app runs on any android phone devices OS >= 23 . Tested on Pixel 2 phone running OS 29
+ The app displays the alphabetically sorted Duckit posts lists from the given backend using reccycleview. The app runs on any android phone devices OS >= 23 . Tested on Pixel 2 phone and Samsung running Android 10
 
 # Technology Used :
 **Platform** : Android 
